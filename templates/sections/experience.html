@@ -1,0 +1,86 @@
+{% load static %}
+
+<!-- Experience Section -->
+<section id="experience" class="experience section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">Experience</span>
+        <h2>Experience</h2>
+        <p>From ideation to honing the final product, I effortlessly collaborate to transform concepts into reality.</p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+            {% for experience in experiences %}
+            <div class="col-lg-6 d-flex">
+                <img src="{{ experience.image.url }}" class="img-fluid" alt="{{ experience.company_name }}">
+                <div class="ps-3">
+                    <h4>{{ experience.company_name }}: <span>({{ experience.start_year }} - {{ experience.end_year|default:"Present" }})</span></h4>
+                    <p>{{ experience.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section><!-- /Experience Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% load static %}
+<!-- Experience Section -->
+<section id="experience" class="experience section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">Experience</span>
+        <h2>Experience</h2>
+        <p>From ideation to honing the final product, I effortlessly collaborate to transform concepts into reality.</p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+            <!-- First Experience -->
+            <div class="col-lg-6 d-flex">
+                <img src="{% static '/assets/img/experience-1.jpg' %}" class="img-fluid" alt="Arch360">
+                <div class="ps-3">
+                    <h4>Arch360: <span>(2019 - 2020)</span></h4>
+                    <p>Bringing 2 years of dynamic experience to the forefront of design, I thrive at Arch360, where creativity meets precision.</p>
+                </div>
+            </div>
+
+            <!-- Second Experience -->
+            <div class="col-lg-6 d-flex">
+                <img src="{% static '/assets/img/experience-2.jpg' %}" class="img-fluid" alt="MIK Partnership">
+                <div class="ps-3">
+                    <h4>MIK Partnership: <span>(2020 - 2024)</span></h4>
+                    <p>Proudly collaborating with MIK, our partnership transcends boundaries, fusing academia with real-world architectural innovation.</p>
+                </div>
+            </div>
+
+
+            <!-- Third Experience -->
+            <div class="col-lg-6 d-flex">
+                <img src="{% static '/assets/img/experience-3.jpg' %}" class="img-fluid" alt="MIK Partnership">
+                <div class="ps-3">
+                    <h4>Alnajdia Partnership: <span>(From 2024)</span></h4>
+                    <p>Proudly collaborating with Alnajdia Constructions, our partnership pushes the limits of design, merging visionary architecture with practical innovation. As a Design Architect, we strive to create spaces that inspire and transcend conventional boundaries.</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section><!-- /Experience Section --> {% endcomment %}

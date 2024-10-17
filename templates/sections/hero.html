@@ -1,0 +1,57 @@
+
+{% load static %}
+
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section light-background">
+
+        <div class="container">
+          <div class="row gy-4 justify-content-center justify-content-lg-between">
+            <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
+              <h1 data-aos="fade-up">Ar. Najam Ul Wahab</h1>
+              <h4><span>Architect</span></h4>
+              <p data-aos="fade-up" data-aos-delay="100">As an architect you design for <b>PRESENT</b> 
+                                                        with an awareness of the <b>PAST</b> for a <b>FUTURE</b>
+                                                         which is essential unknown.
+                                                         <br><b><i>(Norman Foster)</i></b></p>
+
+              
+
+              <div data-aos="fade-up" data-aos-delay="150">
+                  <h4><i class="bi bi-envelope-fill" style="color: #4267B2;"></i> {{ about.email }}</h4>
+              </div>
+              <div data-aos="fade-up" data-aos-delay="200">
+                  <h4><i class="bi bi-telephone-fill" style="color: #4267B2;"></i> {{ about.phone }}</h4>
+              </div>
+              <div data-aos="fade-up" data-aos-delay="250" class="mb-4">
+                  <h4><i class="bi bi-geo-alt-fill" style="color: #4267B2;"></i> {{ about.city }}</h4>
+              </div>
+              <div>
+                <br>
+              </div>
+
+
+              <div class="d-flex social-links" data-aos="fade-up" data-aos-delay="200">
+                <a href="#" class="glightbox btn-watch-video d-flex align-items-center" style="color: #003eff;"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#" class="glightbox btn-watch-video d-flex align-items-center" style="color: #4267B2;"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="glightbox btn-watch-video d-flex align-items-center" style="color: #f77737;"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#" class="glightbox btn-watch-video d-flex align-items-center" style="color: #008fff;"><i class="fa-brands fa-square-twitter"></i></a>
+                <a href="#" class="glightbox btn-watch-video d-flex align-items-center" style="color: #13b350;"><i class="fa-brands fa-square-whatsapp"></i></a>
+                <a href="#" class="glightbox btn-watch-video d-flex align-items-center" style="color: #13b350;"><i class="fa-brands fa-square-upwork"></i></a>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-lg-5 order-1 order-lg-2" data-aos="zoom-out">
+              <img src="{% static '/assets/img/Najam-Profile-Photo1.png' %}" class="img-fluid animated" alt="">
+            </div>
+
+
+
+
+          </div>
+        </div>
+  
+      </section><!-- /Hero Section -->

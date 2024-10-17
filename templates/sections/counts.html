@@ -1,0 +1,66 @@
+{% load static %}
+
+<!-- ======= Counts Section ======= -->
+<section id="counts" class="counts">
+    <div class="container">
+
+        <div class="text-center title">
+            <h3>{{ section.title }}</h3>
+            <p>{{ section.description }}</p>
+        </div>
+
+        <div class="row counters position-relative d-flex justify-content-center">
+            <div class="col-lg-3 col-6 d-flex flex-column align-items-center">
+                <span id="clientsCounter" data-purecounter-start="0" data-purecounter-end="{{ section.clients }}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Clients Satisfaction</p>
+            </div>
+
+            <div class="col-lg-3 col-6 d-flex flex-column align-items-center">
+                <span id="projectsCounter" data-purecounter-start="0" data-purecounter-end="{{ section.projects }}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Projects</p>
+            </div>
+
+            <div class="col-lg-3 col-6 d-flex flex-column align-items-center">
+                <span id="supportCounter" data-purecounter-start="0" data-purecounter-end="{{ section.hours_of_support }}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Hours of Support</p>
+            </div>
+
+            <div class="col-lg-3 col-6 d-flex flex-column align-items-center">
+                <span id="experienceCounter" data-purecounter-start="0" data-purecounter-end="{{ section.experience }}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Experience</p>
+            </div>
+        </div>
+
+    </div>
+</section><!-- End Counts Section -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to append symbol after the counter finishes
+        function addSymbol(counterId, symbol) {
+            const counterElement = document.getElementById(counterId);
+            const observer = new MutationObserver(function (mutationsList) {
+                mutationsList.forEach(function (mutation) {
+                    if (mutation.type === 'childList') {
+                        // Append the symbol without breaking the line
+                        if (!counterElement.innerHTML.includes(symbol)) {
+                            counterElement.innerHTML = counterElement.innerHTML.trim() + symbol;
+                        }
+                    }
+                });
+            });
+
+            // Start observing the counter element for changes
+            observer.observe(counterElement, { childList: true });
+        }
+
+        // Apply the function with different symbols for different counters
+        addSymbol('clientsCounter', '%');  // For Clients Satisfaction %
+        addSymbol('projectsCounter', '+'); // For Projects +
+        addSymbol('supportCounter', '+');  // For Hours of Support +
+        addSymbol('experienceCounter', '+'); // For Experience +
+
+        // PureCounter initialization (if not already initialized elsewhere)
+        new PureCounter();
+    });
+</script>

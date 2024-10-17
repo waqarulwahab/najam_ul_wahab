@@ -1,0 +1,49 @@
+/*--------------------------------------------------------------
+# Experience Section
+--------------------------------------------------------------*/
+.experience .col-lg-6 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.experience img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.experience h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.experience span {
+    color: var(--accent-color);
+}
+
+.experience p {
+    margin-bottom: 0;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.experience .ps-3 {
+    padding-left: 20px;
+}
+
+@media (max-width: 575px) {
+    .experience img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .experience h4 {
+        font-size: 18px;
+    }
+
+    .experience .ps-3 {
+        padding-left: 15px;
+    }
+}

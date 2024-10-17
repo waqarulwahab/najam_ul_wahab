@@ -1,0 +1,99 @@
+{% extends "base/base.html" %}
+
+
+{% load static %}
+
+{% block content %}
+
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div class="container position-relative d-flex align-items-center justify-content-between">
+
+        <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <img src="{% static '/assets/img/logo.png' %}" alt="">
+          <h1 class="sitename">N - architect</h1>
+          <span>.</span>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="{% url 'index' %}">Home<br></a></li>
+            <li><a href="#portfolio-detail" class="active">Project Detail</a></li>
+
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+
+
+
+
+    <main class="main">
+
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+          <div class="container">
+            <h2><b>Project Details<b></h2>
+          </div>
+      </section><!-- End Breadcrumbs -->
+    
+      <!-- ======= Portfolio Details Section ======= -->
+      <section id="portfolio-detail" class="portfolio-details">
+        <div class="container">
+    
+          <div class="row gy-4">
+    
+            <div class="col-lg-8">
+              <div class="portfolio-details-slider swiper">
+                <div class="swiper-wrapper align-items-center">
+                  
+                  <!-- Loop through all the project images and display them in the slider -->
+                  {% for image in images %}
+                  <div class="swiper-slide">
+                    <img src="{{ image.image.url }}" alt="{{ project.title }}">
+                  </div>
+                  {% endfor %}
+    
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+    
+            <div class="col-lg-4">
+              <div class="portfolio-info">
+                <h3>Project information</h3>
+                <ul>
+                  <li><strong>Category</strong>: {{ project.category.name }}</li>
+                  <li><strong>Client</strong>: {{ project.client_name }}</li>
+                  <li><strong>Project date</strong>: {{ project.project_date|date:"d F, Y" }}</li>
+                  <li><strong>Project URL</strong>: <a href="{{ project.project_url }}">{{ project.project_url }}</a></li>
+                </ul>
+              </div>
+              <div class="portfolio-description">
+                <h2>{{ project.detail_title }}</h2>
+                <p>{{ project.detail_description }}</p>
+              </div>
+            </div>
+    
+          </div>
+    
+        </div>
+      </section><!-- End Portfolio Details Section -->
+    
+    </main>
+    
+
+      <!-- Vendor JS Files -->
+      <script src="{% static '/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+      <script src="{% static '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static '/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+      <script src="{% static '/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+      <script src="{% static '/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+
+      <!-- Template Main JS File -->
+      <script src="{% static '/assets/js/main.js' %}"></script>
+
+{% endblock %}
