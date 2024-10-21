@@ -5,7 +5,7 @@ from colorfield.fields import ColorField  # Import the color picker field
 
 
 class AboutMe(models.Model):
-    name          = models.CharField(max_length=255, default='NAJAM UL WAHAB',    null=True, blank=True)
+    name          = models.CharField(max_length=255, default='NAJM UL WAHAB',    null=True, blank=True)
     title         = models.CharField(max_length=255, default='Architecture', null=True, blank=True)
     birthday      = models.DateField()
     website       = models.URLField(max_length=255, null=True, blank=True)
