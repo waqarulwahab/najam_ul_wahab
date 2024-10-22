@@ -1,5 +1,6 @@
 from django.db import models
 from colorfield.fields import ColorField  # Import the color picker field
+from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
 
@@ -72,6 +73,38 @@ class ProjectImage(models.Model):
     def __str__(self):
         return f"Image for {self.project.title}"
     
+class AchievementsSection(models.Model):
+    title            = models.CharField(max_length=255, default="What we have achieved so far")
+    description      = models.TextField(default="Crafting innovative spaces with precision and creativity, building structures that stand the test of time.")
+    clients          = models.IntegerField(default=0)
+    projects         = models.IntegerField(default=0)
+    hours_of_support = models.IntegerField(default=0)
+    experience       = models.IntegerField(default=0)  # For Hard Workers / Experience
+
+    def __str__(self):
+        return self.title
+
+class Experience(models.Model):
+    company_name = models.CharField(max_length=255)
+    position     = models.CharField(max_length=255)
+    start_year   = models.IntegerField()
+    end_year     = models.IntegerField(null=True, blank=True)  # For ongoing roles, leave blank
+    description  = models.TextField()
+    image        = models.ImageField(upload_to='experience_images/')  # Assumes you have media files handling set up
+
+    def __str__(self):
+        return f"{self.company_name} ({self.start_year} - {self.end_year or 'Present'})"
+    
+class Service(models.Model):
+    title       = models.CharField(max_length=255)
+    description = models.TextField()
+    icon_image  = models.ImageField(upload_to='service_icons/')  # Upload path for the service icons
+
+    def __str__(self):
+        return self.title
+
+
+
 class ThemeSettings(models.Model):
     background_color   = ColorField(default="#ffffff")
     default_color      = ColorField(default="#212529")
@@ -90,37 +123,18 @@ class ThemeSettings(models.Model):
     def __str__(self):
         return "Theme Settings"
 
-class AchievementsSection(models.Model):
-    title            = models.CharField(max_length=255, default="What we have achieved so far")
-    description      = models.TextField(default="Crafting innovative spaces with precision and creativity, building structures that stand the test of time.")
-    clients          = models.IntegerField(default=0)
-    projects         = models.IntegerField(default=0)
-    hours_of_support = models.IntegerField(default=0)
-    experience       = models.IntegerField(default=0)  # For Hard Workers / Experience
+
+
+
+class BackgroundImage(models.Model):
+    name = models.CharField(max_length=255)
+    background_image_1 = models.ImageField(upload_to='backgrounds/', null=True, blank=True)
+    background_image_1_opacity = models.FloatField(default=1.0, validators=[MinValueValidator(0.0), MaxValueValidator(1.0)])
+    background_image_2 = models.ImageField(upload_to='backgrounds/', null=True, blank=True)
+    background_image_2_opacity = models.FloatField(default=1.0, validators=[MinValueValidator(0.0), MaxValueValidator(1.0)])
+    background_image_3 = models.ImageField(upload_to='backgrounds/', null=True, blank=True)
+    background_image_3_opacity = models.FloatField(default=1.0, validators=[MinValueValidator(0.0), MaxValueValidator(1.0)])
 
     def __str__(self):
-        return self.title
-
-
-
-class Experience(models.Model):
-    company_name = models.CharField(max_length=255)
-    position     = models.CharField(max_length=255)
-    start_year   = models.IntegerField()
-    end_year     = models.IntegerField(null=True, blank=True)  # For ongoing roles, leave blank
-    description  = models.TextField()
-    image        = models.ImageField(upload_to='experience_images/')  # Assumes you have media files handling set up
-
-    def __str__(self):
-        return f"{self.company_name} ({self.start_year} - {self.end_year or 'Present'})"
-    
-
-class Service(models.Model):
-    title       = models.CharField(max_length=255)
-    description = models.TextField()
-    icon_image  = models.ImageField(upload_to='service_icons/')  # Upload path for the service icons
-
-    def __str__(self):
-        return self.title
-
+        return self.name
 

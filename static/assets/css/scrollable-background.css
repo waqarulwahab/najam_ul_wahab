@@ -1,0 +1,84 @@
+/* Common styles for all background sections */
+.hero-background {
+    position: relative;
+    background-color: black; /* Use a variable for the background color */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+/* Common pseudo-element styles for the overlay */
+.hero-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+/* Specific styles for background color 1 */
+.hero-background-color-1 {
+    background-color: rgb(228, 226, 226); /* Set background color here */
+}
+
+  
+.background-section {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+/* Common pseudo-element styles for the overlay */
+.background-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+/* Specific styles for background image 1 */
+.background-image-1 {
+    background-image: var(--background-image-1);
+}
+
+.background-image-1::before {
+    background-color: rgba(255, 255, 255, var(--background-image-1-opacity));
+}
+
+/* Specific styles for background image 2 */
+.background-image-2 {
+    background-image: var(--background-image-2);
+}
+
+.background-image-2::before {
+    background-color: rgba(255, 255, 255, var(--background-image-2-opacity));
+}
+
+/* Specific styles for background image 3 */
+.background-image-3 {
+    background-image: var(--background-image-3);
+}
+
+.background-image-3::before {
+    background-color: rgba(255, 255, 255, var(--background-image-3-opacity));
+}
+
+

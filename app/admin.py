@@ -11,7 +11,7 @@ from .models import ThemeSettings
 from .models import AchievementsSection
 from .models import Experience
 from .models import Service
-
+from .models import BackgroundImage
 
 class AboutMeForm(forms.ModelForm):
     class Meta:
@@ -92,5 +92,44 @@ class ServiceAdmin(admin.ModelAdmin):
 admin.site.register(AchievementsSection)
 
 admin.site.register(ThemeSettings)
+
+
+
+
+
+
+
+
+
+
+
+@admin.register(BackgroundImage)
+class BackgroundImageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'background_image_1_tag', 'background_image_2_tag', 'background_image_3_tag')
+
+    def background_image_1_tag(self, obj):
+        if obj.background_image_1:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.background_image_1.url))
+        return '-'
+
+    def background_image_2_tag(self, obj):
+        if obj.background_image_2:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.background_image_2.url))
+        return '-'
+
+    def background_image_3_tag(self, obj):
+        if obj.background_image_3:
+            return format_html('<img src="{}" width="50" height="50" />'.format(obj.background_image_3.url))
+        return '-'
+
+    background_image_1_tag.short_description = 'Background Image 1'
+    background_image_2_tag.short_description = 'Background Image 2'
+    background_image_3_tag.short_description = 'Background Image 3'
+
+
+
+
+
+
 
 

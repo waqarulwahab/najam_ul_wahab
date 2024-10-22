@@ -29,6 +29,8 @@
     <link href="{% static '/assets/vendor/fontawsome-icons/all.css' %}" rel="stylesheet">
 
     <!-- CSS  -->
+
+   
     <link href="{% static '/assets/css/footer.css' %}" rel="stylesheet">
     <link href="{% static '/assets/css/services.css' %}" rel="stylesheet">
     <link href="{% static '/assets/css/counts.css' %}" rel="stylesheet">
@@ -40,6 +42,7 @@
     <link href="{% static '/assets/css/about.css' %}"     rel="stylesheet">
     <link href="{% static '/assets/css/hero.css' %}"      rel="stylesheet">
     <link href="{% static '/assets/css/header.css' %}"    rel="stylesheet">
+    <link href="{% static '/assets/css/scrollable-background.css' %}"    rel="stylesheet">
 
 
 
@@ -53,13 +56,28 @@
     <style>
         /* Global Colors */
         :root { 
-          --background-color: {{ theme.background_color }};
+          --background-color: {{ theme.background_color }}; 
           --default-color: {{ theme.default_color }};
           --heading-color: {{ theme.heading_color }};
           --accent-color: {{ theme.accent_color }};
           --surface-color: {{ theme.surface_color }};
           --contrast-color: {{ theme.contrast_color }};
           
+          /* Background Image Settings */
+          {% if bg_image.background_image_1 %}
+            --background-image-1: url('{{ bg_image.background_image_1.url }}');
+            --background-image-1-opacity: {{ bg_image.background_image_1_opacity }};
+          {% endif %}
+          {% if bg_image.background_image_2 %}
+            --background-image-2: url('{{ bg_image.background_image_2.url }}');
+            --background-image-2-opacity: {{ bg_image.background_image_2_opacity }};
+          {% endif %}
+          {% if bg_image.background_image_3 %}
+            --background-image-3: url('{{ bg_image.background_image_3.url }}');
+            --background-image-3-opacity: {{ bg_image.background_image_3_opacity }};
+          {% endif %}
+
+
           /* Nav Menu Colors */
           --nav-color: {{ theme.nav_color }};
           --nav-hover-color: {{ theme.nav_hover_color }};

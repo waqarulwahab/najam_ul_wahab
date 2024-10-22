@@ -1,4 +1,3 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from .models import AboutMe
 from .models import Client
@@ -7,49 +6,52 @@ from .models import ThemeSettings
 from .models import AchievementsSection
 from .models import Experience
 from .models import Service
+from .models import BackgroundImage
+from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 
-# Create your views here.
+
+import logging
+logger = logging.getLogger(__name__)
+
+
+
 def index(request):
-    theme = ThemeSettings.objects.first()  # Fetch the first instance of theme settings
-    about = AboutMe.objects.latest('created_at')  # Get the latest entry based on creation time
+    theme = ThemeSettings.objects.first()
+    about = AboutMe.objects.latest('created_at')
     clients = Client.objects.all()
-
     categories = ProjectCategory.objects.all()
+    section = AchievementsSection.objects.first()
+    experiences = Experience.objects.all()
+    services = Service.objects.all()
+    bg_image = BackgroundImage.objects.latest('id')
+    
+    # Get the total number of projects to send to the template
+    total_projects = Project.objects.count()
+
     projects = Project.objects.all()
-
-    section = AchievementsSection.objects.first()  # Get the first record
-
-    # Add images to each project
     projects_with_images = []
     for project in projects:
-        images = project.images.all()  # Get all images related to the project
+        images = project.images.all()
         projects_with_images.append({
             'project': project,
             'images': images,
         })
-
-    # Pagination - Display 5 projects per page
-    paginator = Paginator(projects_with_images, 12)  # Show 5 projects per page
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-
-
-    experiences = Experience.objects.all()
-    services    = Service.objects.all()
 
     context = {
         'theme': theme,
         'about': about,
         'clients': clients,
         'categories': categories,
-        'projects_with_images': page_obj,  # Passing paginated projects with their images
+        'projects_with_images': projects_with_images,
         'section': section,
-        'page_obj': page_obj,  # For pagination controls
         'experiences': experiences,
         'services': services,
+        'bg_image': bg_image,
+        'total_projects': total_projects,
     }
     return render(request, 'index.html', context)
+
 
 
 def portfolio_details(request, project_id):

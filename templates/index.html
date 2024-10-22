@@ -7,25 +7,33 @@
     {% include "sections/header.html" %}
 
     <main class="main">
-        {% include "sections/hero.html" %}
+        <container class="hero-background hero-background-color-1">
+            {% include "sections/hero.html" %}
+        </container>
 
-        {% include "sections/about.html" %}
-
-        {% include "sections/education.html" %}
-
-        {% include "sections/experience.html" %}
+        <container class="background-section background-image-1">
+            {% include "sections/about.html" %}
+            {% include "sections/education.html" %}
+            {% include "sections/experience.html" %}
+        </container>
 
         {% include "sections/cta.html" %}
 
-        {% include "sections/clients.html" %}
 
-        {% include "sections/services.html" %}
+        <container class="background-section background-image-2">
+            {% include "sections/clients.html" %}
+            {% include "sections/services.html" %}
+        </container>
 
         {% include "sections/counts.html" %}
 
-        {% include "sections/projects.html" %}
+        <container class="background-section background-image-3">
+            {% include "sections/projects.html" %}
+        </container>
+
 
         {% include "sections/footer.html" %}
+
 
     </main>
 
@@ -42,3 +50,12 @@
       <script src="{% static '/assets/js/main.js' %}"></script>
 
 {% endblock %}
+
+
+
+
+        {% comment %} {% include "sections/about.html" %}
+
+        {% include "sections/education.html" %}
+
+        {% include "sections/experience.html" %} {% endcomment %}
