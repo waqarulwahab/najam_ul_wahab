@@ -12,18 +12,22 @@
     <div class="row">
       <div class="col-lg-12 d-flex justify-content-center">
         <ul id="portfolio-flters">
-          <li data-filter="*" class="filter-active">All</li>
+          <li data-filter="*" class="{% if request.GET.category == '*' or not request.GET.category %}filter-active{% endif %}">All</li>
           {% for category in categories %}
-          <li data-filter=".filter-{{ category.id }}">{{ category.name }}</li>
+          <li data-filter=".filter-{{ category.id }}" class="{% if request.GET.category == category.id|stringformat:"s" %}filter-active{% endif %}">
+            {{ category.name }}
+          </li>
           {% endfor %}
         </ul>
+        
+        
       </div>
     </div>
 
     <div id="portfolio-container" class="row portfolio-container">
-      <!-- The initial 20 project items are here -->
-      {% for project_with_images in projects_with_images %}
-      <div class="col-lg-4 col-md-6 portfolio-item filter-{{ project_with_images.project.category.id }}">
+      <!-- Display the project items for each category -->
+      {% for project_with_images in projects_with_images_by_category %}
+      <div class="col-lg-4 col-md-6 portfolio-item filter-{{ project_with_images.category.id }}">
         {% if project_with_images.images %}
           <img src="{{ project_with_images.images.first.image.url }}" class="img-fluid" alt="{{ project_with_images.project.title }}">
         {% else %}
@@ -31,7 +35,7 @@
         {% endif %}
         <div class="portfolio-info">
           <h4>{{ project_with_images.project.title }}</h4>
-          <p>{{ project_with_images.project.category.name }}</p>
+          <p>{{ project_with_images.category.name }}</p>
           {% if project_with_images.project.display_details == 'YES' %}
             <a href="{% url 'portfolio-details' project_with_images.project.id %}" class="details-link" title="More Details">
               <i class="bx bx-link"></i>
@@ -42,10 +46,22 @@
       {% endfor %}
     </div>
 
+<!-- Load More Button -->
+{% if loaded_projects < total_projects %}
+<div class="row">
+  <div class="col-lg-12 d-flex justify-content-center">
+    <form method="get" action="#portfolio">
+      <input type="hidden" name="load_more" value="{{ loaded_projects|add:10 }}">
+      <input type="hidden" name="category" value="{{ request.GET.category|default:'*' }}">
+      <button type="submit" class="btn btn-primary">Load More</button>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+
 
   </div>
 </section>
+
 <!-- End Portfolio Section -->
-
-
-

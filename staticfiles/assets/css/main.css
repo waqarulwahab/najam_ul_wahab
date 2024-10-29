@@ -35,8 +35,8 @@
   /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
   
   .light-background {
-    --background-color: #f2f2f2;
-    --surface-color: #ffffff;
+    --background-color: #f2f2f2 !important;
+    --surface-color: #ffffff !important;
   }
   
   .dark-background {
@@ -91,7 +91,7 @@
   section,
   .section {
     color: var(--default-color);
-    background-color: var(--background-color);
+
     padding: 60px 0;
     scroll-margin-top: 80px;
     overflow: clip;
