@@ -1,6 +1,7 @@
 from django.db import models
 from colorfield.fields import ColorField  # Import the color picker field
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.html import mark_safe
 # Create your models here.
 
 
@@ -103,6 +104,23 @@ class Service(models.Model):
     def __str__(self):
         return self.title
 
+
+
+
+class Skill(models.Model):
+    name       = models.CharField(max_length=100)
+    image      = models.ImageField(upload_to='skills/')
+    percentage = models.PositiveIntegerField()
+
+    def image_tag(self):
+        if self.image:
+            return mark_safe(f'<img src="{self.image.url}" width="50" height="50" style="border-radius: 5px;" />')
+        return "No Image Available"
+    image_tag.short_description = 'Logo'
+
+    def __str__(self):
+        return self.name
+    
 
 
 class ThemeSettings(models.Model):

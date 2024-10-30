@@ -1,0 +1,21 @@
+{% load static %}
+<div class="container mt-5">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">Skills</span>
+        <h2>Skills</h2>
+    </div><!-- End Section Title -->
+
+    <div class="row justify-content-center">
+        {% for skill in skills %}
+        <div class="col-md-2 skill-card">
+            <div class="progress-ring" data-value="{{ skill.percentage }}">
+                <div class="progress-inner-circle">
+                    <img src="{{ skill.image.url }}" alt="{{ skill.name }}">
+                </div>
+            </div>
+            <div class="skill-title">{{ skill.name }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

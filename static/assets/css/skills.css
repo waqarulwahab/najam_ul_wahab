@@ -1,0 +1,56 @@
+.skill-card {
+    text-align: center;
+    margin: 20px;
+    width: 120px;
+}
+
+.progress-ring {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background: conic-gradient(
+        var(--accent-color) calc(var(--value, 0) * 1%), /* Progress color */
+        transparent 0% 100% /* Transparent background ring color */
+    );
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Percentage display is removed */
+/*
+.progress-ring::before {
+    content: attr(data-value) "%";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff;
+}
+*/
+
+.skill-title {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.progress-inner-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-inner-circle img {
+    width: 40px;
+    height: 40px;
+}

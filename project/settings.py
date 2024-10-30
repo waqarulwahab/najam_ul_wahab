@@ -1,5 +1,7 @@
 from pathlib import Path
 import os
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +12,7 @@ SECRET_KEY = 'django-insecure-@8sg^ahqxd!5(r)-4%j4cp)n+mun15b&vovru2e4ymvqa)qkxf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['najam-ul-wahab.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -106,7 +108,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Add this line
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = [
+    os.path.join(BASE_DIR, 'staticfiles')
+]
+django_heroku.settings(locals())
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

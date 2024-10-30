@@ -7,6 +7,7 @@ from .models import AchievementsSection
 from .models import Experience
 from .models import Service
 from .models import BackgroundImage
+from .models import Skill
 from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -17,14 +18,15 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    theme = ThemeSettings.objects.first()
-    about = AboutMe.objects.latest('created_at')
-    clients = Client.objects.all()
-    categories = ProjectCategory.objects.all()
-    section = AchievementsSection.objects.first()
+    theme       = ThemeSettings.objects.first()
+    about       = AboutMe.objects.latest('created_at')
+    clients     = Client.objects.all()
+    categories  = ProjectCategory.objects.all()
+    section     = AchievementsSection.objects.first()
     experiences = Experience.objects.all()
-    services = Service.objects.all()
-    bg_image = BackgroundImage.objects.latest('id')
+    services    = Service.objects.all()
+    bg_image    = BackgroundImage.objects.latest('id')
+    skills      = Skill.objects.all()
 
     # Get the total number of projects
     total_projects = Project.objects.count()
@@ -71,6 +73,7 @@ def index(request):
         'total_projects': total_projects,
         'loaded_projects': load_more,
         'selected_category': selected_category,  # Pass the selected category to the template
+        'skills': skills,
     }
     return render(request, 'index.html', context)
 

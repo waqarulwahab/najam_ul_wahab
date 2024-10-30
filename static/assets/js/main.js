@@ -96,6 +96,12 @@
 
 
 
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll(".progress-ring").forEach(function(ring) {
+          const percentage = ring.getAttribute("data-value");
+          ring.style.setProperty("--value", percentage);
+      });
+  });
 
 
 })()

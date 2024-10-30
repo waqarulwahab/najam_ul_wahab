@@ -12,6 +12,7 @@ from .models import AchievementsSection
 from .models import Experience
 from .models import Service
 from .models import BackgroundImage
+from .models import Skill
 
 class AboutMeForm(forms.ModelForm):
     class Meta:
@@ -95,7 +96,11 @@ admin.site.register(ThemeSettings)
 
 
 
+class SkillAdmin(admin.ModelAdmin):
+    list_display = ('name', 'percentage', 'image_tag')  # Display image in list view
+    readonly_fields = ('image_tag',)  # Display image in the detail view
 
+admin.site.register(Skill, SkillAdmin)
 
 
 
